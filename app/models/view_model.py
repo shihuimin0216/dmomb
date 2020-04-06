@@ -29,6 +29,7 @@ class ModelHandler(HtmlHandler):
             collections=collections
         )
         print(data)
+        print("curent_username",self.get_secure_cookie("current_username"))
         self.html(os.path.join(
             configs['templates_path'], 'models/model.html'), data=data)
 

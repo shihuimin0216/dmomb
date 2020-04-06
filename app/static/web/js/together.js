@@ -2,6 +2,7 @@
 //     window.location.href = "<%=request.getContextPath()%>/person_space";
 // }
 
+
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
 })
@@ -42,6 +43,7 @@ $(document).ready(function () {
  * @param {*} redirect_url  跳转的地址
  * jquery的语法
  */
+
 function request(url, fields, redirect_url) {
   $("#btn-sub").click(function () {
     console.log("into btn-sub")
@@ -57,7 +59,7 @@ function request(url, fields, redirect_url) {
         if (res.code == 1) {
           //成功跳转
           location.href = redirect_url
-        } else {
+                    } else {
           //失败信息的展示
           var error = res.data;
           for (var index in fields) {
@@ -78,9 +80,7 @@ function request(url, fields, redirect_url) {
 
   })
 }
-
-function  login(url, fields, redirect_url) {
-  alert(typeof (fields)+fields);
+function  login(url, fields) {
   $("#btn-sub").click(function () {
     console.log("into btn-sub")
     //对表单进行序列化
@@ -90,20 +90,16 @@ function  login(url, fields, redirect_url) {
       url: url, //请求的接口地址
       data: data,
       dataType: "json",
+      async: false,
       success: function (res) {
-        console.log(res)
         if(res.code == 1) {
           alert("登录成功");
-          //修改显示的模块
-          // $("#info_login").html("欢迎你" + res.user.mail);
-          $("#user_info").html(res.user.mail);
           $("#no_login").css("display", "none");
+          $("#user_info").html(res['user']['mail']);
           $("#haved_login").css("display", "block");
           $('#img_login').css("display","block");
-          // $("#id01").css("display","block");
-          //成功跳转
-          // location.href = redirect_url;
-        } else {
+        }
+       else {
           //失败信息的展示
           var error = res.data;
           // alert("error"+error)
@@ -116,7 +112,6 @@ function  login(url, fields, redirect_url) {
         }
       },
     });
-
   })
 }
 //加载file的组建

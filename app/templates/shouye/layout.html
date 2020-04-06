@@ -8,6 +8,8 @@
     <title>dmomb网站首页</title>
     <!-- <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css"> -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="js/jquery/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/app/jquery.base64.js"></script>
     <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
@@ -15,6 +17,8 @@
     <link rel="stylesheet" href="{{  static_url ('web/css/style.css') }}">
     <link rel="stylesheet" href="{{  static_url ('web/mycss/style.css') }}">
     <link rel="stylesheet" href="{{  static_url ('web/mycss/touxiang.css') }}">
+    <script src="js/jquery.base64.js" type="text/javascript"></script>
+
     <script src="{{ static_url('web/js/bootstrap.min.js') }}"></script>
     <script src="{{ static_url('web/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ static_url('web/js/together.js') }}"></script>
@@ -92,6 +96,7 @@
     <!-- Optionally include localization script for your language if needed -->
     <!-- script src="/path/to/js/locales/en.js" type="text/javascript"></script>
         <!-- markdown完 -->
+    <script type="text/javascript" src="base64.js"></script>
 </head>
 
 <body>
@@ -178,11 +183,8 @@
 
                     </div>
                     <div class="col-md-2">
-                        <div class="row" id="no_login">
+                        <div class="row" id="no_login" style="display: none">
                             <ul class="nav navbar-nav navbar-right">
-                                <!-- <li>
-                                    <p class="navbar-text">登录注册点击这里</p>
-                                </li> -->
                                 <li class="dropdown">
                                     <button class="img_button" href="#" class="dropdown-toggle" data-toggle="dropdown"><b>登录 / 注册</b> <span class="caret"></span></button>
                                     <ul id="login-dp" class="dropdown-menu">
@@ -271,7 +273,7 @@
                                                 <label style="text-align:left ">您的工作室 </label>
                                             </div>
                                             <div>
-                                                <label style="text-align:left; hover:#83fff3" onclick="change_user()">切换账号</label>
+                                                <label style="text-align:left; hover:#83fff3" id="change_user">切换账号</label>
                                             </div>
                                             <div>
                                                 <label style="text-align:left ">切换语言</label>
@@ -314,16 +316,75 @@
         </div>
     </div>
     <script>
+
+        var current_username;
+        function GetCookie()
+        {
+          var aCookie = document.cookie.split(";");
+          for(var i=0; i<aCookie.length; i++)
+          {
+             var aCrumb = aCookie[i].split("=");
+
+             if(aCrumb[0].replace(/\s+/g,"")=="current_username"){
+                 alert(aCrumb[1]);
+                 var aCrumbj = aCrumb[1].split("current_username|");
+                 var value=aCrumbj[1].split(':')[0];
+                 var cookiecount= Number(value);
+                 var cookiecontent=aCrumbj[1].split(':')[1].substring(0,cookiecount);
+                 alert(aCrumbj[1].split(':')[1].substring(0,cookiecount));
+                 $("#user_info").html(window.atob(cookiecontent));
+                 // for(var j=0;j<aCrumbj.length;j++){
+                 //     alert(aCrumbj);
+                 // }
+             // current_username = unescape(aCrumb[1]);
+             // alert(aCrumb[1]);
+             return true;
+             }
+          }
+          return false;
+
+        }
+        function showinfo(){
+
+          $("#haved_login").css("display", "block");
+          $('#img_login').css("display","block");
+        }
+        function unshowinfo(){
+           $("#no_login").css("display", "block");
+           $('#img_login').css("display", "none");
+           $("#id01").css("display", "none");
+          // document.cookie= '';
+           alert("返回首页");
+        }
+
+        // alert("1"+document.cookie);
         $(document).ready(function() {
-            console.log("进入reques");
-            $('#img_login').click(function() {
-                $("#id01").css("display", "block");
-                //  $('#img_login').css("display","none");
+           if ( GetCookie()==true){
+               alert("获取当前cookie值有效");
+               showinfo();
+           } else {
+               $("#no_login").css("display", "block");
+               login(
+                '/user/login/', ['mail', 'password']
+               );
+           };
+          $('#change_user').click(function () {
+              // alert("change_user方法");
+               $.ajax({
+                data:{
+                opcookie:'off'
+                },
+                type: "get", //请求方式
+                url: '/', //请求的接口地址
+                success: function() {
+                   unshowinfo();
+                },
             });
-            login(
-                '/user/login/', ['mail', 'password'],
-                '/');
-            $(".modal-body label").click(
+           })
+         $('#img_login').click(function() {
+                $("#id01").css("display", "block");
+            });
+          $(".modal-body label").click(
                 function() {
                     if ($(this).hasClass('focus')) {
                         return true;
@@ -333,47 +394,8 @@
                     }
                 }
             )
-
         });
-        // function getCookie(name) {
-        //     var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
-        //     return r ? r[1] : undefined;
-        // }
-        // function set_xsrf(data){
-        //     var secure_key = getCookie("__xsrf") || "";
-        //     if (isNotEmpty(secure_key)) {
-        //         data["__xsrf"] = secure_key;
-        //     }
-        //     return data;
-        // }
-        function getCookie(name) {
-            var cook = document.cookie.match("\\b" + name + "=([^;]*)\\b");
-            return cook ? cook[1] : undefined
-        }
-        var _xsrf = getCookie("_xsrf");
-        alert(_xsrf);
 
-        function change_user() {
-            var secure_key = getCookie("_xsrf");
-            alert(secure_key);
-            $.ajax({
-                type: "get", //请求方式
-                url: '/', //请求的接口地址
-                // data: data,
-                // dataType: "json",
-                // headers: {"X-XSRFToken": getCookie("_xsrf")},
-                success: function(res) {
-                    $("#no_login").css("display", "block");
-                    $('#img_login').css("display", "none");
-                    $("#id01").css("display", "none");
-                    alert("返回首页");
-                },
-            });
-            // $("#id01").css("display", "none");
-            // $("#")
-            // $("#no_login").css("display", "block");
-
-        }
     </script>
 </body>
 
