@@ -3,6 +3,10 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0px;padding:0px;}
+address{
+	margin:auto 60%;
+	width: 40%;
+}
 blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
 table{border-collapse:collapse;border-spacing:0;}
@@ -24,7 +28,7 @@ img{max-width:100%;}
 /*end reset*/
 body {
 font-family:Verdana;
-    background:url('../images/bg.jpg') no-repeat 0% 87% fixed;
+    background:url('../images/bg3.jpg') no-repeat 0% 87% fixed;
     background-size: cover;
 	 'Lato', sans-serif;
 	text-align:center;
@@ -40,25 +44,36 @@ font-family:Verdana;
     font-weight: 400;
     text-transform: uppercase;
 }
+
 /*--//header--*/
 
 /*--main--*/
 .main-agileits {
-    margin: 2% auto;
-   	background: rgba(125, 63, 152, 0.52);
+    margin: 2% 5% auto auto;
+   	background: rgb(106, 142, 152);
     width: 32%;
 	 'Lato', sans-serif;
 }
+.div_line{
+	width: 70%;
+	float: left;
+}
 .sub-head {
     font-size: 38px;
-    padding: 42px;
+    padding: 20px;
     color: white;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
 .sub-main{
 	position:relative;
+	padding: 5px;
 }
+.main-agileits {
+		/*width: 84%;*/
+		padding: 5px;
+		float: right;
+	}
 /*--icons--*/
 .icon1,.icon2,.icon3,.icon4,.icon5,.icon6{
 	position: absolute;
@@ -141,7 +156,9 @@ font-family:Verdana;
    text-decoration:underline;
 }
 /*--//footer--*/
-
+.footer{
+	padding: 5px;
+}
 /*--Responsive--*/
 @media(max-width:1440px){
 	.main-agileits {

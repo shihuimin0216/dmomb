@@ -4,14 +4,14 @@
 <head>
 	<title>dmomb注册页面</title>
 	<!-- Meta tag Keywords -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<!-- Meta tag Keywords -->
 	<!-- css files -->
-	<link href="{{  static_url('web/userinfo/login_002/css/style.css')}}" rel="stylesheet" type="text/css" media="all">
-	<link href="{{  static_url('web/userinfo/login_002/css/font-awesome.min.css')}}css/font-awesome.min.css"
-		rel="stylesheet" type="text/css" media="all">
+	<link href="{{static_url('web/userinfo/login_002/css/style.css')}}" rel="stylesheet" type="text/css" media="all">
+	<!--<link href="{{static_url('web/userinfo/login_002/css/font-awesome.min.css')}}css/font-awesome.min.css"-->
+		<!--rel="stylesheet" type="text/css" media="all">-->
 	<link href="{{ static_url('web/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="all">
 	<script src="{{ static_url('web/js/together.js') }}"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -202,41 +202,6 @@
         }
     });
 		   })
-	// $(document).ready(function () {
-	// 	$("#btn-sub").click(function () { //定义sub事件
-	// 		var username = $("#uname").val(); //定义变量
-	// 		var number = $("#unumber").val(); //定义变量
-	// 		var mail = $("#umail").val();
-	// 		var password = $("#upassword").val();
-	// 		var repassword = $("#urepassword").val();
-	// 		alert(username+number+mail+password+repassword);
-	// 		// $.ajax({
-	// 		// 	type: "get", //请求方式
-	// 		// 	url: 'http://127.0.0.1:8003/user/add/', //请求的接口地址
-	// 		// 	data: {
-	// 		// 		username: username, //服务端请求的数据，前者username代表django获取前端的变量名，后者username代表上面定义的变量名
-	// 		// 		number: number,
-	// 		// 		mail: mail,
-	// 		// 		password: password,
-	// 		// 		repassword: repassword,
-	// 		// 	},
-	// 		// 	dataType: "JSON", //返回数据格式，前端要求json格式，后端就必须返回json格式的数据
-	// 		// 	success: function (data) { //data为自定义变量，也可以写成success
-	// 		// 		if (data.success == '200') { //success为后端返回的key值，也可以用msg进行判断
-	// 		// 			alert("棒棒棒,登录成功！") //弹出提示框
-	// 		// 			window.location.href = "/chenggong.html" //跳转到成功页
-	// 		// 			return true
-	// 		// 		}
-	// 		// 		if (data.success == '201') {
-	// 		// 			alert("用户名或密码错误,请重新输入！")
-	// 		// 			window.location.href = "/shibai.html" //跳转到失败页
-	// 		// 			// window.location.reload()
-	// 		// 			return false
-	// 		// 		}
-	// 		// 	},
-	// 		// })
-	// 	})
-	// })
 
 	</script>
 </head>
@@ -248,9 +213,14 @@
 	</div>
 	<!--//header-->
 	<!--main-->
-	<div class="main-agileits">
+	<div class="div_line">
+				introduceajfjwafjawjfrqwjfnwrejfnjqewrfrwqejjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfk
+	</div>
+	<div class="main-agileits " >
 		<h2 class="sub-head">Sign Up</h2>
 		<div class="sub-main">
+
+			<div>
 			<form id="form-data">
 				{% raw xsrf_form_html() %}
 				<input  id="uname" placeholder="First Name" name="name" class="name" type="text" required>
@@ -273,22 +243,23 @@
 				<span class="error_tip"></span>
 				<span class="icon5"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
 				<!--<p class="text-danger" id="error-repassword"></p>-->
-				<input id="btn-sub" class="btn btn-default btn-lg" type='button' value='提交' />
-				<input class="btn btn-default btn-lg" type='button' value='返回' onclick="exit()" />
+				<input id="btn-sub" type='button' value='提交' />
+				<input  type='button' value='返回' onclick="exit()" />
 				<!-- <a href="javascript:void(0)" class="btn btn-primary">登录</a> -->
 			</form>
+	   	    </div>
 		</div>
-		<div class="clear"></div>
+		<!--<div class="clear"></div>-->
 	</div>
 	<!--//main-->
 
 	<!--footer-->
-	<div class="row clearfix">
-		<div class="col-md-12 column nerous">
+
+		<div class="col-md-12 footer">
 			<address> <strong>上海戴牧塔智能科技有限公司, Inc.</strong> 上海市浦东新区南汇新城镇海洋一路, CA 94107<br /> <abbr
 					title="phone">P:</abbr> 17705419425</address>
 		</div>
-	</div>
+
 	<!--//footer-->
 
 
