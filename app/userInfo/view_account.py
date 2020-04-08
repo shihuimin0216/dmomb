@@ -59,7 +59,11 @@ class AccountAddHandler(CommonHandler):
 
 
 class LoginHandler(CommonHandler):
-
+    def get_current_user(self):
+        name = self.get_secure_cookie("current_username")
+        if name is not None:
+            return True
+        return False
     @tornado.gen.coroutine
     def get(self, *args, **kwargs):
         yield self.get_response()
@@ -82,7 +86,10 @@ class LoginHandler(CommonHandler):
         # field = form.mail
         if form.validate():
             # 设置安全会话,实现权限管理
-            self.set_secure_cookie('name', form.data['mail'])
+            # print("form.data['mail']",form.data['mail'])
+            # self.set_secure_cookie('current_username', form.data['mail'])
+            self.set_secure_cookie("current_username", form.data['mail'])
+            print("curent_username",self.get_secure_cookie("current_username"))
             # 定义成功接口格式
             res['code'] = 1
             res['msg'] = '成功'

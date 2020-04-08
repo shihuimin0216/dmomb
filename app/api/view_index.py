@@ -20,6 +20,11 @@ class IndexHandler(CommonHandler):
 
     @tornado.concurrent.run_on_executor
     def get_response(self):
+        cook = self.get_arguments("opcookie")
+        print(type(cook),cook)
+        if cook ==['off']:
+            print(cook);
+            self.clear_cookie("current_username")
         # loader = Template
         print("view_index.py")
         # time.sleep(5)
