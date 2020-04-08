@@ -19,7 +19,6 @@
     <script src="{{ static_url('web/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ static_url('web/js/together.js') }}"></script>
 
-
     <!-- 这些是为了能够实现文件的输入的js和css插件 -->
     <!-- 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -355,7 +354,7 @@
 
         function change_user() {
             var secure_key = getCookie("_xsrf");
-            alert(secure_key);
+            // alert(secure_key);
             $.ajax({
                 type: "get", //请求方式
                 url: '/', //请求的接口地址

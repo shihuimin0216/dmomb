@@ -14,13 +14,14 @@
         <div class="form-group">
             <span class="label label-info">数据名称</span>
             <input type="text" name="name" class="form-control" placeholder="Text input">
-            <span class="label label-info">数据文件</span>
+
             <span class="label label-info">论文地址</span>
             <input type="text" name="paper" class="form-control" placeholder="Text input">
+            <span class="label label-info">数据文件</span>
             <div class="file-loading">
                 <!-- {% raw xsrf_form_html() %} -->
                 {% raw xsrf_form_html() %}
-                <input id="text_file" name="file" type="file" class="file" data-upload-url="/data/upload/" data-theme="fas">
+                <input id="text_file" name="file" type="file" class="file" data-upload-url="/upload" data-theme="fas">
                 <!-- <input type="file" class="file" name="tkai_file" multiple> -->
             </div>
             <span class="label label-info">相关markdown说明</span>

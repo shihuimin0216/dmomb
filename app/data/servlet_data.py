@@ -20,4 +20,12 @@ class Servlet_data:
         return self.db.insert(
             self.dict_data
         )
-    # 将打批量的文件进行处理
+    # 将数据库中的数据全部显示出来
+
+    def show_all(self):
+        # 做一些查询之前的处理,例如用户信息的验证等等
+        data = dict(
+            collections=self.db.find_all()
+        )
+        print(data)
+        return data
