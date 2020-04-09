@@ -30,7 +30,7 @@ class ModelHandler(HtmlHandler):
             collections=collections
         )
         print(data)
-        print("curent_username",self.get_secure_cookie("current_username"))
+        print("curent_username", self.get_secure_cookie("current_username"))
         self.html(os.path.join(
             configs['templates_path'], 'models/model.html'), data=data)
 
@@ -101,7 +101,9 @@ class AddModelHandler(HtmlHandler):
     def check_xsrf_cookie(self):
         # 非常有用的在单页面禁用xsrf_cookie的检查
         return True
-# 模型相信信息显示渲染
+
+
+# 模型详情信息显示渲染
 
 
 class ModelDetail(HtmlHandler):

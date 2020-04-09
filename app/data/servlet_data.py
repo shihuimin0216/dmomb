@@ -6,7 +6,7 @@ class Servlet_data:
     def __init__(self, data):
         self.db = dbManage()
         self.data = data
-    # 将form转化为字典
+    # 将data类转化为字典
     @property
     def dict_data(self):
         return dict(

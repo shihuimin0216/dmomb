@@ -9,7 +9,7 @@ class dbManage(MDConnector):  # 继承公共数据库连接器
 
     def insert(self, dict_form):
         self.co = self.db.data_info
-        print(dict_form)
+        # print(dict_form)
         inser_flag = self.co.insert_one(
             dict_form
         )

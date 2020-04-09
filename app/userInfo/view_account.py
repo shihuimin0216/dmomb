@@ -64,6 +64,7 @@ class LoginHandler(CommonHandler):
         if name is not None:
             return True
         return False
+
     @tornado.gen.coroutine
     def get(self, *args, **kwargs):
         yield self.get_response()
@@ -89,7 +90,7 @@ class LoginHandler(CommonHandler):
             # print("form.data['mail']",form.data['mail'])
             # self.set_secure_cookie('current_username', form.data['mail'])
             self.set_secure_cookie("current_username", form.data['mail'])
-            print("curent_username",self.get_secure_cookie("current_username"))
+            print("curent_username", self.get_secure_cookie("current_username"))
             # 定义成功接口格式
             res['code'] = 1
             res['msg'] = '成功'
