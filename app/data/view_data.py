@@ -113,11 +113,12 @@ class DataDetail(HtmlHandler):
             <!-- 此处省略掉markdown的css样式，因为太长了 -->
             </style>
             '''
-        markdown_info = markdown.markdown(collections[0]['info'])
+        # markdown_info = markdown.markdown(collections[0]['info'])
 
         #################
+        print(collections[0])
         data = dict(
-            markdown_info=markdown_info
+            collection=collections[0]
         )
         print(data)
         self.html(os.path.join(
