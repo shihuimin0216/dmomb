@@ -1,11 +1,11 @@
 class Model:
-    def __init__(self, name, paper, data_url, file_path, jupyter_path, image_path, info, createAt):
+    def __init__(self, name, paper, data_url, file_path, jupyter_path, img_path, info, createAt, updatedAt):
         self.name = name
         self.paper = paper
         self.data_url = data_url
         self.file_path = file_path
         self.jupyter_path = jupyter_path
-        self.image_path = image_path
+        self.img_path = img_path
         self.info = info
         self.createAt = createAt
         self.updatedAt = updatedAt

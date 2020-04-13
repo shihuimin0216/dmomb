@@ -4,7 +4,7 @@ import datetime
 import json
 import markdown
 import codecs
-import app.models.Model
+
 import tornado.gen
 import tornado.concurrent
 
@@ -12,6 +12,7 @@ from bson.objectid import ObjectId
 from app.api.html_common import HtmlHandler
 from app.configs import configs
 from app.common.forms import ModelForm
+from app.models.Model import Model
 from app.models.servlet_model import Servlet_model
 # 显示model相关信息
 
@@ -116,17 +117,17 @@ class ModelDetail(HtmlHandler):
         print(_id)
         db = self.md.dmomb
         co = db.model_info
-        collections = co.find({'_id': ObjectId(_id)}, {'markdown_info': 1})
+        collections = co.find({'_id': ObjectId(_id)})
         # 加一步将markdown转化为html文件.
         css = '''<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <style type="text/css">
             <!-- 此处省略掉markdown的css样式，因为太长了 -->
             </style>
             '''
-        html = css + markdown.markdown(collections[0]['markdown_info'])
+        # html = css + markdown.markdown(collections[0]['markdown_info'])
         #################
         data = dict(
-            markdown_info=html
+            collection=collections[0]
         )
         print(data)
         self.html(os.path.join(
