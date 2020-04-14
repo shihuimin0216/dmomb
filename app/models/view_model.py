@@ -113,11 +113,13 @@ class ModelDetail(HtmlHandler):
 
     @tornado.concurrent.run_on_executor
     def get_response(self):
+        print("进入页面信息")
         _id = str(self.get_argument('_id'))
         print(_id)
         db = self.md.dmomb
-        co = db.model_info
+        co = db.machine_info
         collections = co.find({'_id': ObjectId(_id)})
+        print(collections)
         # 加一步将markdown转化为html文件.
         css = '''<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <style type="text/css">
@@ -126,10 +128,11 @@ class ModelDetail(HtmlHandler):
             '''
         # html = css + markdown.markdown(collections[0]['markdown_info'])
         #################
+        # print(collections[0])
         data = dict(
             collection=collections[0]
         )
-        print(data)
+
         self.html(os.path.join(
             configs['templates_path'], 'models/model_detail.html'), data=data)
 
