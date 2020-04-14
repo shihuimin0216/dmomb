@@ -32,5 +32,7 @@ class IndexHandler(CommonHandler):
         # 模型模块访问批量数据
         models = service.get_10_model
 
+        # 硬件模块访问批量数据
+        machine = service.get_10_machine
         self.html(os.path.join(
-            configs['templates_path'], 'shouye/index.html'), data=datas, models=models)
+            configs['templates_path'], 'shouye/index.html'), data=datas, models=models, machine=machine)

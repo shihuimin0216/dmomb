@@ -117,7 +117,7 @@ class ModelDetail(HtmlHandler):
         _id = str(self.get_argument('_id'))
         print(_id)
         db = self.md.dmomb
-        co = db.machine_info
+        co = db.model_info
         collections = co.find({'_id': ObjectId(_id)})
         print(collections)
         # 加一步将markdown转化为html文件.

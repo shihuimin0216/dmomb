@@ -69,7 +69,24 @@
 </div>
 
 
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">硬件市场</h3>
+    </div>
+    <div class="panel-body">
+        {% for v in machine['collections'] %}
+        <div class="card box" style="float: left;width: 350px; height: 350px;  margin: 2rem;">
+            <img class="card-img-top" src="{{ v['img_path'] }}" alt="Card image cap" style="width: 330px;height: 230px; border-radius:10px;margin: 1rem;">
+            <div class="card-body">
+                <h5 class="card-title">标题:{{ v['name'] }}</h5>
+                <p class="card-text">内容:{{ v['info'] }}
+                    <a href="/machine/detail?_id={{ v['_id'] }}" class="card-link">详细信息</a></p>
 
+            </div>
+        </div>
+        {% end %}
+    </div>
+</div>
 
 
 

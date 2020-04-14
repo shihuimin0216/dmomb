@@ -2,6 +2,7 @@
 
 from app.data.servlet_data import Servlet_data
 from app.models.servlet_model import Servlet_model
+from app.machine.servlet_machine import Servlet_machine
 
 
 class Service_index:
@@ -22,7 +23,11 @@ class Service_index:
         # 暂时使用查询全部,以后数据多起来了,要改为查询前30个
         models = model_service.show_all()
         return models
-    # 读取前30个工具样例
 
-    def get_10_mechile(self):
-        pass
+    # 读取前30个工具样例
+    @property
+    def get_10_machine(self):
+        machine_service = Servlet_machine(None)
+        # 暂时使用查询全部,以后数据多起来了,要改为查询前30个
+        machine = machine_service.show_all()
+        return machine
