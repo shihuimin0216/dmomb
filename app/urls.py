@@ -9,6 +9,10 @@ from app.machine.view_machine import MachineHandler as machine_index, AddMachine
 from app.api.upload import FileUploadHandler as nginx_file_upload_bak_index
 from app.api.jupyter import JupyterHandler as jupyter_index
 from app.api.image import ImageHandler as image_index
+
+
+from app.zone.view_zone_index import IndexHandler as zone_index
+
 import tornado
 from app.configs import configs
 # api接口
@@ -27,7 +31,7 @@ api_urls = [
 
     (r'/machine/', machine_index),
     (r'/machine/add/', add_machine_index),
-    (r'/machine/detail', detail_model_index),
+    (r'/machine/detail', detail_machine_index),
 ]
 
 # 静态文件
@@ -37,15 +41,22 @@ api_urls = [
 
 # 后台系统
 admin_urls = [
-    (r'/admin_fucker', admin_index)
+    (r'/admin', admin_index)
 ]
 
+
+# 个人中心
+zone_urls = [
+    (r'/zone', zone_index)
+]
+
+# 用户登录
 user_urls = [
     (r'/user/add/', user_add_account),
     (r'/user/login/', login_index),
 
 ]
 
-urls = api_urls + admin_urls + user_urls
+urls = api_urls + admin_urls + user_urls + zone_urls
 
 print(urls)

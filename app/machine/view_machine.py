@@ -14,7 +14,7 @@ from app.configs import configs
 from app.common.forms import MachineForm
 from app.machine.Machine import Machine
 from app.machine.servlet_machine import Servlet_machine
-# 显示model相关信息
+# 显示机械相关信息
 
 
 class MachineHandler(HtmlHandler):

@@ -14,9 +14,10 @@
 <div class="card box" style="float: left;width: 350px; height: 350px;  margin: 2rem;">
     <img class="card-img-top" src="{{ v['img_path'] }}" alt="Card image cap" style="width: 330px;height: 230px; border-radius:10px;margin: 1rem;">
     <div class="card-body">
-        <h5 class="card-title">标题:{{ v['name'] }}</h5>
-        <p class="card-text">内容:{{ v['info'] }}
-            <a href="/machine/detail?_id={{ v['_id'] }}" class="card-link">详细信息</a></p>
+        <h5 class="card-title">标题:{{ v['name'] }}
+            <a href="/machine/detail?_id={{ v['_id'] }}" class="card-link">详细信息</a>
+        </h5>
+        <p class="card-text">作者:{{ v['info'] }}</p>
 
     </div>
 </div>
