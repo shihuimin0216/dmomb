@@ -16,6 +16,22 @@ class dbManage(MDConnector):  # 继承公共数据库连接器
         if not inser_flag:
             return True
         return False
+
+    # 将数据与用户的连接插入进去
+    def insert_user_data(self, data_uuid, user_uuid):
+        # 获取插入集合的链接
+        self.co = self.db.user_data_info
+        # 将其处理成字符串进行插入
+        insert_flag = self.co.insert_one(
+            dict(
+                data_uuid=data_uuid,
+                user_uuid=user_uuid
+            )
+        )
+        if not insert_flag:
+            return True
+        return False
+
     # 查找全部数据库的数据
 
     def find_all(self):

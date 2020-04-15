@@ -1,4 +1,6 @@
 # _*_ coding: utf-8 _*_
+from app.configs import configs
+import tornado
 from app.admin.view_admin_index import IndexHandler as admin_index
 from app.api.view_index import IndexHandler as api_index
 from app.userInfo.view_account import AccountAddHandler as user_add_account, LoginHandler as login_index
@@ -6,15 +8,18 @@ from app.data.view_data import DataHandler as data_index, DataUploadHandler as d
 from app.models.view_model import ModelHandler as models_index, AddModelHandler as add_model_index, ModelDetail as detail_model_index
 from app.machine.view_machine import MachineHandler as machine_index, AddMachineHandler as add_machine_index, MachineDetail as detail_machine_index
 
+
 from app.api.upload import FileUploadHandler as nginx_file_upload_bak_index
 from app.api.jupyter import JupyterHandler as jupyter_index
 from app.api.image import ImageHandler as image_index
 
 
 from app.zone.view_zone_index import IndexHandler as zone_index
+from app.zone.datas.view_zone_datas import ZoneDataHandler as zone_data_index
+from app.zone.machines.view_zone_machine import ZoneMachinesHandler as zone_machine_index
+from app.zone.models.view_zone_models import ZoneModelsHandler as zone_model_index
 
-import tornado
-from app.configs import configs
+zone_model_index
 # api接口
 api_urls = [
     (r'/', api_index),
@@ -47,7 +52,10 @@ admin_urls = [
 
 # 个人中心
 zone_urls = [
-    (r'/zone', zone_index)
+    (r'/zone', zone_index),
+    (r'/zone/datas', zone_data_index),
+    (r'/zone/machines', zone_machine_index),
+    (r'/zone/models', zone_model_index)
 ]
 
 # 用户登录

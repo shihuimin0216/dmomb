@@ -14,12 +14,18 @@ class Servlet_machine:
         )
 
     # 处理数据,并插入数据库
-    def process_machine(self):
+    def process_machine(self, user_uuid):
         print(self.dict_machine)
-        # 插入数据库
-        return self.db.insert(
-            self.dict_machine
+        # 将数据插入数据库
+        machine_flag = self.db.insert(self.dict_machine)
+        # 将数据和用户的连接插入数据库
+        user_machine_flag = self.db.insert_user_machine(
+            machine_uuid=self.dict_machine['uuid'],
+            user_uuid=user_uuid
         )
+        if machine_flag and user_machine_flag:
+            return True
+        return False
     # 将数据库中的数据全部显示出来
 
     def show_all(self):

@@ -25,4 +25,4 @@ class IndexHandler(CommonHandler):
             print(cook)
             self.clear_cookie("current_username")
         self.html(os.path.join(
-            configs['templates_path'], 'zone/zone_index.html'))
+            configs['templates_path'], 'zone/zone_layout.html'))

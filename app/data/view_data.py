@@ -63,6 +63,7 @@ class DataUploadHandler(HtmlHandler):
             print(self.get_secure_cookie('jupyter_path', None))
             # 实例化这个data类
             data = Data(
+                uuid=uuid.uuid4(),
                 name=form.data['name'],
                 file_path=self.get_secure_cookie('file_db', None),
                 jupyter_path=self.get_secure_cookie('jupyter_path', None),
@@ -73,9 +74,10 @@ class DataUploadHandler(HtmlHandler):
             )
             # 将数据传给servlet处理
             servlet = Servlet_data(
-                data
+                data=data
             )
-            if servlet.process_data():
+            user_uuid = self.get_secure_cookie('uuid', None)
+            if servlet.process_data(user_uuid):
                 # 数据处理成功
                 res['code'] = 1
                 res['msg'] = '成功'

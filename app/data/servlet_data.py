@@ -14,13 +14,19 @@ class Servlet_data:
         )
 
     # 处理数据,并插入数据库
-    def process_data(self):
+    def process_data(self, user_uuid):
         print(self.dict_data)
-        # 插入数据库
-        return self.db.insert(
-            self.dict_data
+        # 将数据插入数据库
+        data_flag = self.db.insert(self.dict_data)
+        # 将数据和用户的连接插入数据库
+        user_data_flag = self.db.insert_user_data(
+            data_uuid=self.dict_data['uuid'],
+            user_uuid=user_uuid
         )
-    # 将数据库中的数据全部显示出来
+        if data_flag and user_data_flag:
+            return True
+        return False
+        # 将数据库中的数据全部显示出来
 
     def show_all(self):
         # 做一些查询之前的处理,例如用户信息的验证等等

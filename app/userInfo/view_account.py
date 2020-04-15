@@ -1,6 +1,8 @@
 # _*_ coding: utf-8
 import os
 import datetime
+import uuid
+import json
 import tornado.gen
 import tornado.concurrent
 from app.api.html_common import HtmlHandler
@@ -40,6 +42,7 @@ class AccountAddHandler(CommonHandler):
             # 'name','number','mail','password','repassword'
             co.insert_one(
                 dict(
+                    uuid=uuid.uuid4(),
                     name=form.data['name'],
                     number=form.data['number'],
                     mail=form.data['mail'],
@@ -90,7 +93,15 @@ class LoginHandler(CommonHandler):
             # print("form.data['mail']",form.data['mail'])
             # self.set_secure_cookie('current_username', form.data['mail'])
             self.set_secure_cookie("current_username", form.data['mail'])
-            print("curent_username", self.get_secure_cookie("current_username"))
+            # print("curent_username", self.get_secure_cookie("current_username"))
+
+            # 验证成功之后查询用户的uuid并加入到cookie中
+            db = self.md.dmomb
+            co = db.account
+            accout = co.find({'mail': form.data['mail']})
+            # print("accout信息:", accout[0])
+            self.set_secure_cookie("uuid", str(accout[0]['uuid']))
+            # print(accout)
             # 定义成功接口格式
             res['code'] = 1
             res['msg'] = '成功'

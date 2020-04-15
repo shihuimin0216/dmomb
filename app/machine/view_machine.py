@@ -4,7 +4,7 @@ import datetime
 import json
 import markdown
 import codecs
-
+import uuid
 import tornado.gen
 import tornado.concurrent
 
@@ -73,6 +73,7 @@ class AddMachineHandler(HtmlHandler):
             print(self.get_secure_cookie('jupyter_path', None))
             # 实例化这个data类
             machine = Machine(
+                uuid=uuid.uuid4(),
                 name=form.data['name'],
                 paper=form.data['paper'],
                 data_url=form.data['data_url'],
@@ -87,7 +88,8 @@ class AddMachineHandler(HtmlHandler):
             servlet = Servlet_machine(
                 machine
             )
-            if servlet.process_machine():
+            user_uuid = self.get_secure_cookie('uuid', None)
+            if servlet.process_machine(user_uuid):
                 # 数据处理成功
                 res['code'] = 1
                 res['msg'] = '成功'
