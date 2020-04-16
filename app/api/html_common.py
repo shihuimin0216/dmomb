@@ -11,9 +11,9 @@ class HtmlHandler(CommonHandler):
         return self.get_secure_cookie('name', None)
     # 请求的预处理
 
-    def prepare(self):
-        if not self.user_name:
-            self.redirect('/')
+    # def prepare(self):
+    #     if not self.user_name:
+    #         self.redirect('/')
     '''
     渲染模板的
     '''

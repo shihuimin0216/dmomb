@@ -9,7 +9,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css"> -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="js/jquery/jquery-2.1.4.min.js"></script>
-        <script type="text/javascript" src="js/app/jquery.base64.js"></script>
+    <script type="text/javascript" src="js/app/jquery.base64.js"></script>
     <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
@@ -22,7 +22,6 @@
     <script src="{{ static_url('web/js/bootstrap.min.js') }}"></script>
     <script src="{{ static_url('web/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ static_url('web/js/together.js') }}"></script>
-
 
     <!-- 这些是为了能够实现文件的输入的js和css插件 -->
     <!--
@@ -116,32 +115,21 @@
                     </a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:8003/"><i class="fa fa-fw fa-home"></i> Home</a>
+                    <a href="http://127.0.0.1:8003/"><i class="fa fa-fw fa-home"></i> 首页</a>
                 </li>shuju
                 <li>
-                    <a href="http://127.0.0.1:8003/data/"><i class=" fa fa-fw fa-folder"></i> Data</a>
+                    <a href="http://127.0.0.1:8003/data/"><i class=" fa fa-fw fa-folder"></i> 数据</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:8003/models/"><i class="fa fa-fw fa-file-o"></i> Model </a>
+                    <a href="http://127.0.0.1:8003/models/"><i class="fa fa-fw fa-file-o"></i> 模型 </a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:8003/machines/"><i class="fa fa-fw fa-cog"></i> Machine tool </a>
+                    <a href="http://127.0.0.1:8003/machine/"><i class="fa fa-fw fa-cog"></i> 硬件工具 </a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:8003/machines/"><i class="fa fa-fw fa-bank"></i> Busyness</a>
+                    <a href="http://127.0.0.1:8003/soft/"><i class="fa fa-fw fa-bank"></i> 软件市场</a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Like
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Dropdown heading</li>
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
+
 
                 <!-- <li>
                     <a href="#"><i class="fa fa-fw fa-dropbox"></i> Page 5</a>
@@ -257,13 +245,13 @@
                                 <div class="div_img_login">
                                     <img id="img_login" src="../../static/image/1.jpeg" class="round_icon" alt="">
                                 </div>
-                                <div id="id01" class="img_modal">
-                                    <div class="img_modal-content animate">
+                                <div id="id01" class="img_modal" style="width:252.67px;height:364.24px">
+                                    <div class="img_modal-content animate" style="width:252.67px;height:364.24px">
                                         <div class="modal-header">
                                             <!--<form class="img_modal-content animate" action="/action_page.php">-->
                                             <div class="img_container">
                                                 <!-- 点击×号，隐藏模态框-->
-                                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;&times;</span>
+                                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                                                 <img src="../../static/image/1.jpeg" alt="Avatar" class="avatar img_label_oneline">
                                                 <label id="user_info" class="img_label_oneline"></label>
                                             </div>
@@ -286,7 +274,7 @@
                                                 <label style="text-align:left "><b>个人中心</b></label>
                                             </div>
                                             <div>
-                                                <label style="text-align:left ">您的工作室 </label>
+                                                <label style="text-align:left "><a href="/zone">您的工作室</a> </label>
                                             </div>
                                             <div>
                                                 <label style="text-align:left; hover:#83fff3" id="change_user">切换账号</label>
@@ -331,8 +319,8 @@
         </div>
     </div>
     <script>
-
         var current_username;
+<<<<<<< HEAD
         var sendcode;
         function getcode() {
            var phone=$('#phone').val();
@@ -378,9 +366,50 @@
            $('#img_login').css("display", "none");
            $("#id01").css("display", "none");
            alert("返回首页");
+=======
+
+        function GetCookie() {
+            var aCookie = document.cookie.split(";");
+            for (var i = 0; i < aCookie.length; i++) {
+                var aCrumb = aCookie[i].split("=");
+
+                if (aCrumb[0].replace(/\s+/g, "") == "current_username") {
+                    alert(aCrumb[1]);
+                    var aCrumbj = aCrumb[1].split("current_username|");
+                    var value = aCrumbj[1].split(':')[0];
+                    var cookiecount = Number(value);
+                    var cookiecontent = aCrumbj[1].split(':')[1].substring(0, cookiecount);
+                    alert(aCrumbj[1].split(':')[1].substring(0, cookiecount));
+                    $("#user_info").html(window.atob(cookiecontent));
+                    // for(var j=0;j<aCrumbj.length;j++){
+                    //     alert(aCrumbj);
+                    // }
+                    // current_username = unescape(aCrumb[1]);
+                    // alert(aCrumb[1]);
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        function showinfo() {
+
+            $("#haved_login").css("display", "block");
+            $('#img_login').css("display", "block");
+        }
+
+        function unshowinfo() {
+            $("#no_login").css("display", "block");
+            $('#img_login').css("display", "none");
+            $("#id01").css("display", "none");
+            // document.cookie= '';
+            alert("返回首页");
+>>>>>>> 99d4170b707cfbe9ea2b30f825d14ff558b6fa85
         }
 
         $(document).ready(function() {
+<<<<<<< HEAD
            if ( GetCookie()==true){
                alert("获取当前cookie值有效");
                showinfo();
@@ -433,6 +462,34 @@
                 $("#id01").css("display", "block");
             });
          $(".modal-body label").click(
+=======
+            if (GetCookie() == true) {
+                alert("获取当前cookie值有效");
+                showinfo();
+            } else {
+                $("#no_login").css("display", "block");
+                login(
+                    '/user/login/', ['mail', 'password']
+                );
+            };
+            $('#change_user').click(function() {
+                // alert("change_user方法");
+                $.ajax({
+                    data: {
+                        opcookie: 'off'
+                    },
+                    type: "get", //请求方式
+                    url: '/', //请求的接口地址
+                    success: function() {
+                        unshowinfo();
+                    },
+                });
+            })
+            $('#img_login').click(function() {
+                $("#id01").css("display", "block");
+            });
+            $(".modal-body label").click(
+>>>>>>> 99d4170b707cfbe9ea2b30f825d14ff558b6fa85
                 function() {
                     if ($(this).hasClass('focus')) {
                         return true;
@@ -444,6 +501,27 @@
             )
         });
 
+        function change_user() {
+            var secure_key = getCookie("_xsrf");
+            // alert(secure_key);
+            $.ajax({
+                type: "get", //请求方式
+                url: '/', //请求的接口地址
+                // data: data,
+                // dataType: "json",
+                // headers: {"X-XSRFToken": getCookie("_xsrf")},
+                success: function(res) {
+                    $("#no_login").css("display", "block");
+                    $('#img_login').css("display", "none");
+                    $("#id01").css("display", "none");
+                    alert("返回首页");
+                },
+            });
+            // $("#id01").css("display", "none");
+            // $("#")
+            // $("#no_login").css("display", "block");
+
+        }
     </script>
 </body>
 

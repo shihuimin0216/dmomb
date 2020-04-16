@@ -1,0 +1,37 @@
+1.3 如何用python代码将jupyter转化为html
+参考链接:https://blog.csdn.net/red_stone1/article/details/73380517
+参考资料:https://nbconvert.readthedocs.io/en/latest/nbconvert_library.html
+
+参考代码:
+class FileUpload(HtmlHandler):
+    def __init__(self, file_metas):  #传入test.ipynb的文件字符, 可以通过python读取,需要写一个读取函数,然后调用FileUpload这个类,传入.
+        self.file_metas = file_metas
+
+
+    @property
+    def save_to_html(self):
+        if self.file_metas is not None:
+            for meta in self.file_metas:
+                # filename = meta['filename']
+                # 重新定义一个独一无二的名字
+                file_uuid = str(uuid.uuid4())
+                filename = file_uuid + '.html'
+                # jupyter转换成html
+                html = jh.to_html(meta['body'])
+                print(html)
+                file_path = os.path.join(self.upload_path, filename)
+                print(file_path)
+                self.file_db = os.path.join(self.file_db_path, filename)
+                with open(file_path, 'w') as up:
+                    up.write(html)
+            return True
+        else:
+            return False
+当前效果看图一,期望效果见图二
+
+需要解决的问题: 
+	使用jupyter nbconvert --to html test.ipynb, 转化出来的html非常美观
+	但是使用FileUpload中的save_to_html方法,转化出来的html缺乏css文件,js文件,并且没有body和HTML等标签.
+目标: 使用python实现jupyter转化为html的无差别转换.
+
+解决思路: 识别test.ipynb将正确的js,css文件添加上去, 如果test.ipynb没有这些内容,可能需要另外想办法.
