@@ -25,7 +25,7 @@
 
 
     <!-- 这些是为了能够实现文件的输入的js和css插件 -->
-    <!-- 
+    <!--
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         crossorigin="anonymous"> -->
     <link href="{{ static_url('web/file_tool/css/fileinput.css') }}" media="all" rel="stylesheet" type="text/css" />
@@ -193,15 +193,14 @@
                                                 <div class="col-md-12">
                                                     快捷登录
                                                     <div class="social-buttons">
-                                                        <a href="#" class="btn btn-fb"><i class="fa fa-wechat"></i>
-                                                            微信</a>
+                                                        <a href="#" class="btn btn-fb"><i class="fa fa-wechat"></i>微信</a>
                                                         <a href="#" class="btn btn-tw"><i class="fa fa-qq"></i> QQ</a>
                                                     </div>
-                                                    or
+                                                    <div class="type-tab"><span id="reg_btn1" class="active">密码登录</span> <span id="reg_btn2" class="">短信登录</span></div>
                                                     <form class="form" method="post" role="form" accept-charset="UTF-8" id="form-data">
                                                         {% raw xsrf_form_html() %}
+                                                        <div id="reg_1" >
                                                         <div class="form-group">
-
                                                             <label class="sr-only" for="exampleInputEmail2">Email
                                                                 address</label>
                                                             <input name="mail" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
@@ -209,11 +208,28 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="exampleInputPassword2">Password</label>
                                                             <input name="password" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                                            <div class="help-block text-right"><a href="">忘记密码
-                                                                    ?</a></div>
+                                                            <div class="help-block text-right"><a href="">忘记密码?</a></div>
                                                         </div>
+                                                        </div>
+                                                        <div id="reg_2" class="reg2">
+                                                         <div class="form-group status-box">
+                                                         <input id="phone" type="text" autocomplete="off" name="tel" placeholder="填写常用手机号" maxlength="16" class="el-input__inner"><!----><!----><!----><!----></div>
+                                                         <span class="status"></span>
+                                                         <div class="code-input input-width el-input"><!---->
+                                                         <input id="user_code" type="text" autocomplete="off" placeholder="请输入短信验证码" maxlength="8" class="el-input__inner">
+                                                         </div>
+                                                        <button onclick="getcode()" type="button" class="el-button captcha-buttom el-button--primary"><!----><!---->
+                                                         <span>获取验证码</span>
+                                                        </button>
+                                                        <span class="status"></span>
+                                                        <div class="text clearfix"><p class="tips"></p>
+                                                        </div>
+                                                        </div>
+                                                        <!--<div class="text clearfix">-->
+                                                                    <!--<p class="tips"></p></div> <div class="form-group status-box">-->
+                                                        <!--</div>-->
                                                         <div class="form-group">
-                                                            <input id="btn-sub" type="button" class="btn btn-primary btn-block" value="登录"></input>
+                                                            <input id="btn-sub" type="button" class="btn btn-primary btn-block" value="登录">
                                                         </div>
                                                         <div class="checkbox">
                                                             <label>
@@ -299,7 +315,6 @@
                 <main class="row clearfix">
                     {% block content %}{% end %}
                 </main>
-
                 <!-----脚注，下面-->
                 <div class="row clearfix">
                     <div class="col-md-12 column nerous">
@@ -318,54 +333,77 @@
     <script>
 
         var current_username;
+        var sendcode;
+        function getcode() {
+           var phone=$('#phone').val();
+           var _xsrf = $("input[name='_xsrf']").val();
+           // alert(phone);
+           if(phone!=''){
+               // $(th).attr('disabled','disabled');
+               $.post('/user/sendcode/',{'phone':phone,'_xsrf':_xsrf},function (data) {
+                   // alert(data);
+                   sendcode = data.toString();
+               })
+               return sendcode;
+           }
+        }
+
         function GetCookie()
         {
           var aCookie = document.cookie.split(";");
           for(var i=0; i<aCookie.length; i++)
           {
              var aCrumb = aCookie[i].split("=");
-
              if(aCrumb[0].replace(/\s+/g,"")=="current_username"){
-                 alert(aCrumb[1]);
+                 // alert(aCrumb[1]);
                  var aCrumbj = aCrumb[1].split("current_username|");
                  var value=aCrumbj[1].split(':')[0];
                  var cookiecount= Number(value);
                  var cookiecontent=aCrumbj[1].split(':')[1].substring(0,cookiecount);
-                 alert(aCrumbj[1].split(':')[1].substring(0,cookiecount));
+                 // alert(aCrumbj[1].split(':')[1].substring(0,cookiecount));
                  $("#user_info").html(window.atob(cookiecontent));
-                 // for(var j=0;j<aCrumbj.length;j++){
-                 //     alert(aCrumbj);
-                 // }
-             // current_username = unescape(aCrumb[1]);
-             // alert(aCrumb[1]);
              return true;
              }
           }
+          // alert("未获取有效cookie");
           return false;
-
         }
         function showinfo(){
-
           $("#haved_login").css("display", "block");
           $('#img_login').css("display","block");
+          $("#no_login").css("display", "none");
         }
         function unshowinfo(){
            $("#no_login").css("display", "block");
            $('#img_login').css("display", "none");
            $("#id01").css("display", "none");
-          // document.cookie= '';
            alert("返回首页");
         }
 
-        // alert("1"+document.cookie);
         $(document).ready(function() {
            if ( GetCookie()==true){
                alert("获取当前cookie值有效");
                showinfo();
            } else {
                $("#no_login").css("display", "block");
-               login(
-                '/user/login/', ['mail', 'password']
+               $('#btn-sub').click(function(){
+                   var phone=$('#phone').val();
+                   var _xsrf = $("input[name='_xsrf']").val();
+                   if (document.getElementById("reg_2").style.display=="block"){
+                   if ($('#user_code').val()==sendcode.replace(/\s+/g,""))
+                   {
+                    $.post('/user/phonelogin/',{'phone':phone,'_xsrf':_xsrf},function(data){
+                    alert("co_data"+data);
+                    document.getElementsByClassName("status").innerHTML="验证成功！";
+                    $("#user_info").html(data);
+                    showinfo();
+                    $('#login-dp').css("display","none");
+                   });
+                   }
+                   }else {
+                        login('/user/login/', ['mail', 'password']);
+                   }
+               }
                );
            };
           $('#change_user').click(function () {
@@ -380,11 +418,21 @@
                    unshowinfo();
                 },
             });
-           })
+           });
+          $('#reg_btn2').click(function () {
+              $('#reg_1').css("display","none");
+              $('#reg_2').css("display","block");
+              $('#login-dp').css("display","block");
+          });
+          $('#reg_btn1').click(function () {
+              $('#reg_2').css("display","none");
+              $('#reg_1').css("display","block");
+              $('#login-dp').css("display","block");
+          });
          $('#img_login').click(function() {
                 $("#id01").css("display", "block");
             });
-          $(".modal-body label").click(
+         $(".modal-body label").click(
                 function() {
                     if ($(this).hasClass('focus')) {
                         return true;

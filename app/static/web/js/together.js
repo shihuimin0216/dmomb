@@ -41,47 +41,49 @@ $(document).ready(function () {
  * @param {*} url 请求的地址
  * @param {*} fields 提交的字段
  * @param {*} redirect_url  跳转的地址
+ * @param {*} sendcode  验证码
  * jquery的语法
  */
 
-function request(url, fields, redirect_url) {
+function request(url, fields, redirect_url,sendcode) {
   $("#btn-sub").click(function () {
-    console.log("into btn-sub")
-    //对表单进行序列化
-    var data = $("#form-data").serialize();
-    $.ajax({
-      type: "post", //请求方式
-      url: url, //请求的接口地址
-      data: data,
-      dataType: "json",
-      success: function (res) {
-        console.log(res)
-        if (res.code == 1) {
-          //成功跳转
-          location.href = redirect_url
-                    } else {
-          //失败信息的展示
-          var error = res.data;
-          for (var index in fields) {
-            var key = fields[index];
-            if (typeof error[key] === 'undefined') {
-              $("error_" + key).empty();
-
-            } else {
-              $("#error_" + key).empty();
-              $("#error_" + key).apppend(
-                error[key]
-              )
+      if ($('#user_code').val()==sendcode.replace(/\s+/g,"")){
+         console.log("into btn-sub");
+        //对表单进行序列化
+        var data = $("#form-data").serialize();
+        $.ajax({
+          type: "post", //请求方式
+          url: url, //请求的接口地址
+          data: data,
+          dataType: "json",
+          success: function (res) {
+          console.log(res);
+           if (res.code == 1) {
+              //成功跳转
+                alert("注册成功，返回首页重新登陆~~");
+              // window.setTimeout("alert('注册成功，3s返回首页重新登陆~~d')", 3000);
+              location.href = redirect_url;
+             } else {
+              //失败信息的展示
+              var error = res.data;
+              for (var index in fields) {
+                var key = fields[index];
+                if (typeof error[key] === 'undefined') {
+                  $("error_" + key).empty();
+                } else {
+                  $("#error_" + key).empty();
+                  $("#error_" + key).apppend(error[key]);
+                }
+              }
             }
-          }
-        }
-      },
-    });
-
+          },
+        });
+      }else{
+          alert("验证码有误！");
+      }
   })
 }
 function  login(url, fields) {
-  $("#btn-sub").click(function () {
     console.log("into btn-sub")
     //对表单进行序列化
     var data = $("#form-data").serialize();
@@ -112,7 +114,7 @@ function  login(url, fields) {
         }
       },
     });
-  })
+
 }
 //加载file的组建
 

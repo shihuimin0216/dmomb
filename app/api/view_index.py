@@ -25,7 +25,7 @@ class IndexHandler(CommonHandler):
         if cook ==['off']:
             print(cook);
             self.clear_cookie("current_username")
-        # loader = Template
+       # loader = Template
         print("view_index.py")
         # time.sleep(5)
         self.html(os.path.join(configs['templates_path'], 'shouye/index.html'))

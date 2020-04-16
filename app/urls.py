@@ -1,7 +1,8 @@
 # _*_ coding: utf-8 _*_
 from app.admin.view_admin_index import IndexHandler as admin_index
 from app.api.view_index import IndexHandler as api_index
-from app.userInfo.view_account import AccountAddHandler as user_add_account, LoginHandler as login_index
+from app.userInfo.view_account import AccountAddHandler as user_add_account,\
+    LoginHandler as login_index,SendMessageHandler as sendcode,PhoneLoginHandler as phonelogin
 from app.data.view_data import DataHandler as data_index, DataUploadHandler as data_upload_index
 from app.models.view_model import ModelHandler as models_index, AddModelHandler as add_model_index, ModelDetail as detail_model_index
 import tornado
@@ -29,7 +30,8 @@ admin_urls = [
 user_urls = [
     (r'/user/add/', user_add_account),
     (r'/user/login/', login_index),
-
+    (r'/user/sendcode/', sendcode),
+    (r'/user/phonelogin/', phonelogin),
 ]
 
 urls = api_urls + admin_urls + user_urls

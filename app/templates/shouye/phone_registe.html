@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎登录</h1>
+    <form method="POST", action="/login" enctype="multipart/form-data">
+        <p><input name="username" type="text" placeholder="用户名"></p>
+        <p><input name="pwd" type="password" placeholder="密码"></p>
+        <p>
+            <input name="code" type="text" placeholder="验证码">
+            <img src="/check_code" onclick="ChangeCode();" id="imgCode">
+        </p>
+        <input type="submit" value="登录"/>
+        <span style="color: red">{{state}}</span>
+    </form>
+
+<script type="text/javascript">
+    function ChangeCode() {   //当点击图片的时候，会刷新图片，这一段代码就可以实现
+        var code = document.getElementById('imgCode');
+        code.src += '?';
+    }
+</script>
+</body>
+</html>

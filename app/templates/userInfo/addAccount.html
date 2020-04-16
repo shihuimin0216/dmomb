@@ -194,7 +194,8 @@
     // 6.所有输入框验证通过再提交注册
     $submit.click(function(){
         if(flagname && flagpwd && flagrepwd && flagmail ){
-            alert('注册成功!几秒后返回首页~~~');
+            // alert('注册成功!几秒后返回首页~~~');
+			return true;
         }
         else{
             alert("注册失败！信息有误~~~~");
@@ -243,6 +244,13 @@
 				<span class="error_tip"></span>
 				<span class="icon5"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
 				<!--<p class="text-danger" id="error-repassword"></p>-->
+				<div class="code-input input-width el-input"><!---->
+					<input id="user_code" type="text" autocomplete="off" placeholder="请输入短信验证码" maxlength="8" class="el-input__inner">
+				</div>
+				<button  id="code" type="button" class="el-button captcha-buttom el-button--primary">
+					<span>获取验证码</span>
+				</button>
+				<span class="status"></span>
 				<input id="btn-sub" type='button' value='提交' />
 				<input  type='button' value='返回' onclick="exit()" />
 				<!-- <a href="javascript:void(0)" class="btn btn-primary">登录</a> -->
@@ -251,6 +259,7 @@
 		</div>
 		<!--<div class="clear"></div>-->
 	</div>
+
 	<!--//main-->
 
 	<!--footer-->
@@ -264,12 +273,28 @@
 
 
 	<script>
-		$(document).ready(function (res) {
-			request(
+<!--获取验证码-->
+       var sendcode;
+	   $(document).ready(function() {
+		   $('#code').click(function () {
+			var phone = $('#unumber').val();
+            // alert(phone);
+            var _xsrf = $("input[name='_xsrf']").val();
+            $.ajax({
+				type: "post",
+				url: "/user/sendcode/",
+				data:{'phone': phone, '_xsrf': _xsrf},
+				async:false,
+				success: function(msg){
+				    // alert(msg);
+				    sendcode = msg.toString();
+				}
+			});
+             request(
 				'/user/add/',
 				['name', 'number', 'mail', 'password', 'repassword'],
-				'/'
-			)
+				'/',sendcode);
+         });
 		})
 	</script>
 </body>
