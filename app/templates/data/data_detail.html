@@ -5,7 +5,9 @@
 <!-- 添加内容 -->
 <div class="panel panel-primary" style="margin-right: 150px;margin-left: 100px;">
     <div class="panel-heading">
-        <h1 class="panel-title">数据名称 :<strong>{{ data['collection']['name']}}</strong></h1>
+        <h1 class="panel-title">数据名称 :<strong>{{ data['collection']['name']}}</strong>
+        <input style="float:right;background-color:#337ab7;border-color: transparent;" type="button" value="返回"
+               onclick="javascript:history.go(-1);"></h1>
     </div>
     <div class="panel-body">
         <label>数据下载地址 : <a href="{{  data['collection']['file_path'] }} ">点击下载</a></label>
