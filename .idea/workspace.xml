@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc45bf56-d597-425b-a3ce-be065d1690b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dmomb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dmomb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/data/data_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/data/data_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/machine/machine_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/machine/machine_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/models/model_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/models/model_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/shouye/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/shouye/layout.html" afterDir="false" />
-    </list>
+    <list default="true" id="bc45bf56-d597-425b-a3ce-be065d1690b2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
