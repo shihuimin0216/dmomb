@@ -11,7 +11,7 @@ from app.configs import configs
 from app.common.forms import DataForm
 from app.data.Data import Data
 from bson.objectid import ObjectId
-from app.data.servlet_data import Servlet_data
+from app.machine.servlet_machine import Servlet_machine
 
 #
 
@@ -29,10 +29,14 @@ class ZoneMachinesHandler(HtmlHandler):
 
     @tornado.concurrent.run_on_executor
     def get_response(self):
+        # 获取当前用户的uuid
+        user_uuid = self.get_secure_cookie("uuid", None)
+
         # 添加servlet进行出来
-        # servlet = Servlet_data(None)
+        servlet = Servlet_machine(None)
         # # 读取数据
-        # data = servlet.show_all()
+        machine = servlet.show_zone_all(user_uuid)
+
         # 渲染数据到页面
         self.html(os.path.join(
-            configs['templates_path'], 'zone/zone_machines.html'))
+            configs['templates_path'], 'zone/zone_datas.html'), data=machine)

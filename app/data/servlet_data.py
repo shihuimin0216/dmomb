@@ -35,3 +35,10 @@ class Servlet_data:
         )
         print(data)
         return data
+
+    # 根据用户信息查询用户有那些data
+    def show_zone_all(self, user_uuid):
+        data = dict(
+            collections=self.db.find_zone_all(user_uuid)
+        )
+        return data

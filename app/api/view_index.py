@@ -24,12 +24,6 @@ class IndexHandler(CommonHandler):
         if cook == ['off']:
             print(cook)
             self.clear_cookie("current_username")
-<<<<<<< HEAD
-       # loader = Template
-        print("view_index.py")
-        # time.sleep(5)
-        self.html(os.path.join(configs['templates_path'], 'shouye/index.html'))
-=======
         print("程序访问到view_index.py")
         # 数据模块的访问所有数据
         service = Service_index()
@@ -42,4 +36,3 @@ class IndexHandler(CommonHandler):
         machine = service.get_10_machine
         self.html(os.path.join(
             configs['templates_path'], 'shouye/index.html'), data=datas, models=models, machine=machine)
->>>>>>> 99d4170b707cfbe9ea2b30f825d14ff558b6fa85

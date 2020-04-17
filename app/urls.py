@@ -3,14 +3,9 @@ from app.configs import configs
 import tornado
 from app.admin.view_admin_index import IndexHandler as admin_index
 from app.api.view_index import IndexHandler as api_index
-<<<<<<< HEAD
-from app.userInfo.view_account import AccountAddHandler as user_add_account,\
-    LoginHandler as login_index,SendMessageHandler as sendcode,PhoneLoginHandler as phonelogin
-from app.data.view_data import DataHandler as data_index, DataUploadHandler as data_upload_index
-=======
-from app.userInfo.view_account import AccountAddHandler as user_add_account, LoginHandler as login_index
+from app.userInfo.view_account import AccountAddHandler as user_add_account,LoginHandler as login_index,SendMessageHandler as sendcode,PhoneLoginHandler as phonelogin
+
 from app.data.view_data import DataHandler as data_index, DataUploadHandler as data_upload_index, DataDetail as detail_data_index
->>>>>>> 99d4170b707cfbe9ea2b30f825d14ff558b6fa85
 from app.models.view_model import ModelHandler as models_index, AddModelHandler as add_model_index, ModelDetail as detail_model_index
 from app.machine.view_machine import MachineHandler as machine_index, AddMachineHandler as add_machine_index, MachineDetail as detail_machine_index
 

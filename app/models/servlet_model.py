@@ -36,3 +36,11 @@ class Servlet_model:
         )
         print(models)
         return models
+
+    # 根据用户信息查询用户有那些models
+
+    def show_zone_all(self, user_uuid):
+        models = dict(
+            collections=self.db.find_zone_all(user_uuid)
+        )
+        return models

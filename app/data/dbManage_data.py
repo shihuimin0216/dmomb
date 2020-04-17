@@ -40,3 +40,24 @@ class dbManage(MDConnector):  # 继承公共数据库连接器
         # 查找集合的所以元素
         result = self.co.find()
         return result
+
+    # 查找指定uuid的用户所以的数据
+    def find_zone_all(self, user_uuid):
+        data_lists = []
+        self.user_data = self.db.user_data_info
+        self.data = self.db.data_info
+        # 第一步将该用户拥有的所以数据的uuid查询出来
+        result_user_datas = self.user_data.find({'user_uuid': user_uuid})
+
+        # 第二部将每个用户data的具体信息进行封装
+        for v in result_user_datas:
+            print(v['data_uuid'])
+            data = self.data.find({
+                'uuid': v['data_uuid']  # 根据data的uuid查询信息
+            })
+            # 将信息添加到一个list当中,由于查询data是一个cursor,需要指定为0下标
+            data_lists.append(data[0])
+
+        result = data_lists
+        print(result)
+        return result

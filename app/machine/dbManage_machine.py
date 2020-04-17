@@ -39,3 +39,24 @@ class dbManage_machine(MDConnector):  # 继承公共数据库连接器
         # 查找集合的所以元素
         result = self.co.find()
         return result
+
+    # 查找指定uuid的用户所以的数据
+    def find_zone_all(self, user_uuid):
+        machine_lists = []
+        self.user_machine = self.db.user_machine_info
+        self.machine = self.db.machine_info
+        # 第一步将该用户拥有的所以数据的uuid查询出来
+        result_user_machines = self.user_machine.find({'user_uuid': user_uuid})
+
+        # 第二部将每个用户machine的具体信息进行封装
+        for v in result_user_machines:
+            print(v['machine_uuid'])
+            machine = self.machine.find({
+                'uuid': v['machine_uuid']  # 根据machine的uuid查询信息
+            })
+            # 将信息添加到一个list当中,由于查询machine是一个cursor,需要指定为0下标
+            machine_lists.append(machine[0])
+
+        result = machine_lists
+        print(result)
+        return result

@@ -29,10 +29,14 @@ class ZoneDataHandler(HtmlHandler):
 
     @tornado.concurrent.run_on_executor
     def get_response(self):
+        # 获取当前用户的uuid
+        user_uuid = self.get_secure_cookie("uuid", None)
+
         # 添加servlet进行出来
-        # servlet = Servlet_data(None)
+        servlet = Servlet_data(None)
         # # 读取数据
-        # data = servlet.show_all()
+        data = servlet.show_zone_all(user_uuid)
+
         # 渲染数据到页面
         self.html(os.path.join(
-            configs['templates_path'], 'zone/zone_datas.html'))
+            configs['templates_path'], 'zone/zone_datas.html'), data=data)

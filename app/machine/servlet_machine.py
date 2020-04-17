@@ -35,3 +35,10 @@ class Servlet_machine:
         )
         print(machines)
         return machines
+
+    # 根据用户信息查询用户有那些machine
+    def show_zone_all(self, user_uuid):
+        machine = dict(
+            collections=self.db.find_zone_all(user_uuid)
+        )
+        return machine
