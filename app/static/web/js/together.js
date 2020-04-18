@@ -45,8 +45,8 @@ $(document).ready(function() {
  * jquery的语法
  */
 
-<<<<<<< HEAD
 function request(url, fields, redirect_url,sendcode) {
+    alert("sendcode"+sendcode);
   $("#btn-sub").click(function () {
       if ($('#user_code').val()==sendcode.replace(/\s+/g,"")){
          console.log("into btn-sub");
@@ -115,86 +115,6 @@ function  login(url, fields) {
         }
       },
     });
-
-=======
-function request(url, fields, redirect_url) {
-    $("#btn-sub").click(function() {
-        console.log("into btn-sub")
-            //对表单进行序列化
-        var data = $("#form-data").serialize();
-        $.ajax({
-            type: "post", //请求方式
-            url: url, //请求的接口地址
-            data: data,
-            dataType: "json",
-            success: function(res) {
-                console.log(res)
-                if (res.code == 1) {
-                    //成功跳转
-                    location.href = redirect_url
-                } else {
-                    //失败信息的展示
-                    var error = res.data;
-                    for (var index in fields) {
-                        var key = fields[index];
-                        if (typeof error[key] === 'undefined') {
-                            $("error_" + key).empty();
-
-                        } else {
-                            $("#error_" + key).empty();
-                            $("#error_" + key).apppend(
-                                error[key]
-                            )
-                        }
-                    }
-                }
-            },
-        });
-
-    })
-}
-
-function login(url, fields, redirect_url) {
-    alert(typeof(fields) + fields);
-    $("#btn-sub").click(function() {
-        console.log("into btn-sub")
-            //对表单进行序列化
-        var data = $("#form-data").serialize();
-        $.ajax({
-            type: "post", //请求方式
-            url: url, //请求的接口地址
-            data: data,
-            dataType: "json",
-            success: function(res) {
-                console.log(res)
-                if (res.code == 1) {
-                    alert("登录成功");
-                    //修改显示的模块
-                    // $("#info_login").html("欢迎你" + res.user.mail);
-                    $("#user_info").html(res.user.mail);
-                    $("#no_login").css("display", "none");
-                    $("#haved_login").css("display", "block");
-                    $('#img_login').css("display", "block");
-                    // $("#id01").css("display","block");
-                    //成功跳转
-                    // location.href = redirect_url;
-                } else {
-                    //失败信息的展示
-                    var error = res.data;
-                    // alert("error"+error)
-                    for (var index in fields) {
-                        var key = fields[index];
-                        if (error[key] != undefined) {
-                            alert("错误提示" + error[key]);
-                        }
-                    }
-                }
-            },
-        });
-
-    })
->>>>>>> 99d4170b707cfbe9ea2b30f825d14ff558b6fa85
-}
 //加载file的组建
 
 //文件上传by 刘洋
@@ -217,7 +137,7 @@ function file_upload(url, fields, redirect_url) {
             }
         }
 
-    });
+    });}
     $("#btn-data").click(function() {
         console.log("into file_upload")
             //对表单进行序列化

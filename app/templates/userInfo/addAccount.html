@@ -216,7 +216,6 @@
     <div class="main-agileits ">
         <h2 class="sub-head">Sign Up</h2>
         <div class="sub-main">
-
             <div>
                 <form id="form-data">
                     {% raw xsrf_form_html() %}
@@ -240,16 +239,22 @@
                     <span class="error_tip"></span>
                     <span class="icon5"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
                     <!--<p class="text-danger" id="error-repassword"></p>-->
-                    <div class="code-input input-width el-input">
-                        <!---->
-                        <input id="user_code" type="text" autocomplete="off" placeholder="请输入短信验证码" maxlength="8" class="el-input__inner">
+                    <div class="code-input">
+                        <div class="input-code">
+                           <input id="user_code" type="text"  placeholder="请输入短信验证码" >
+                        </div>
+                        <div class="btn-getcode">
+                        <button id="code" type="button">
+                        <span>获取验证码</span>
+                        </button>
+                        </div>
                     </div>
-                    <button id="code" type="button" class="el-button captcha-buttom el-button--primary">
-					<span>获取验证码</span>
-				</button>
-                    <span class="status"></span>
-                    <input id="btn-sub" type='button' value='提交' />
-                    <input type='button' value='返回' onclick="exit()" />
+                    <!--<span class="status"></span>-->
+                    <div class="sub-class">
+                        <input id="btn-sub" type='button' value='提交' />
+                        <input id="btn-back" type='button' value='返回'  />
+                    </div>
+
                     <!-- <a href="javascript:void(0)" class="btn btn-primary">登录</a> -->
                 </form>
             </div>
@@ -293,7 +298,15 @@
                     '/user/add/', ['name', 'number', 'mail', 'password', 'repassword'],
                     '/', sendcode);
             });
+            $('btn-back').click(function () {
+                    if (document.referrer === '') {
+                        location.href = '/';
+                        return;
+                      }
+                      history.go(-1);
+            })
         })
+        
     </script>
 </body>
 

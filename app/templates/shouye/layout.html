@@ -9,7 +9,6 @@
     <!-- <link rel="stylesheet" type="text/css" href="https://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css"> -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="js/jquery/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="js/app/jquery.base64.js"></script>
     <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
@@ -443,27 +442,27 @@
             )
         });
 
-        function change_user() {
-            var secure_key = getCookie("_xsrf");
-            // alert(secure_key);
-            $.ajax({
-                type: "get", //请求方式
-                url: '/', //请求的接口地址
-                // data: data,
-                // dataType: "json",
-                // headers: {"X-XSRFToken": getCookie("_xsrf")},
-                success: function(res) {
-                    $("#no_login").css("display", "block");
-                    $('#img_login').css("display", "none");
-                    $("#id01").css("display", "none");
-                    alert("返回首页");
-                },
-            });
-            // $("#id01").css("display", "none");
-            // $("#")
-            // $("#no_login").css("display", "block");
-
-        }
+        // function change_user() {
+        //     var secure_key = getCookie("_xsrf");
+        //     // alert(secure_key);
+        //     $.ajax({
+        //         type: "get", //请求方式
+        //         url: '/', //请求的接口地址
+        //         // data: data,
+        //         // dataType: "json",
+        //         // headers: {"X-XSRFToken": getCookie("_xsrf")},
+        //         success: function(res) {
+        //             $("#no_login").css("display", "block");
+        //             $('#img_login').css("display", "none");
+        //             $("#id01").css("display", "none");
+        //             alert("返回首页");
+        //         },
+        //     });
+        //     // $("#id01").css("display", "none");
+        //     // $("#")
+        //     // $("#no_login").css("display", "block");
+        //
+        // }
     </script>
 </body>
 

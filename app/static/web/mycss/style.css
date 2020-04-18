@@ -1,4 +1,7 @@
-
+.img_button{
+    color: #bfffe1;
+    border-radius: 5px;
+}
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;

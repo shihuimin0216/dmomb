@@ -283,10 +283,32 @@ font-family:Verdana;
 }
 .error_tip{
 	float: right;
-	position: relative;
+	position: fixed;
 	width: auto;
 	color: #e26864;
 
+}
+.code-input{
+	width: 100%;
+	position: relative;
+}
+.input-code{
+	width: 65%;
+	float: left;
+	margin-left: 5%;
+	position: relative;
+}
+.btn-getcode{
+	width: 20%;
+	float: right;
+	display:inline-block;
+	position: relative;
+	margin: 10px 80px 10px -50px;
+}
+.sub-class{
+	position: relative;
+	width: 50%;
+	margin: 20px 40px 20px 140px;
 }
 @media (max-width: 375px){
 	.icon1, .icon2, .icon3, .icon4, .icon5, .icon6 {
