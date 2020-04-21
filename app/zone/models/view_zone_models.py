@@ -38,4 +38,4 @@ class ZoneModelsHandler(HtmlHandler):
 
         # 渲染数据到页面
         self.html(os.path.join(
-            configs['templates_path'], 'zone/zone_datas.html'), data=models)
+            configs['templates_path'], 'zone/zone_models.html'), data=models)

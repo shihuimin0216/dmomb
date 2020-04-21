@@ -52,6 +52,7 @@
         </div>
     </form>
 </div>
+<script src="{{ static_url('web/js/together.js') }}"></script>
 <script>
     $(document).ready(function() {
             //加载markdown拆件
@@ -67,6 +68,8 @@
                 '/data/upload/', ['name', 'file', 'markdown'],
                 '/' //成功之后的跳转链接
             )
+
+
         })
         // $(document).ready(function () {
         //     //0.初始化fileinput

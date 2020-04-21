@@ -39,4 +39,4 @@ class ZoneMachinesHandler(HtmlHandler):
 
         # 渲染数据到页面
         self.html(os.path.join(
-            configs['templates_path'], 'zone/zone_datas.html'), data=machine)
+            configs['templates_path'], 'zone/zone_machines.html'), data=machine)

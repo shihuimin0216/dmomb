@@ -1,0 +1,11 @@
+.center_ {
+    text-align: center;
+}
+
+.btn-social-icon.btn-lg {
+    height: 45px;
+    width: 45px;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 50%;
+}

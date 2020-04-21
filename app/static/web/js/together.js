@@ -45,99 +45,100 @@ $(document).ready(function() {
  * jquery的语法
  */
 
-function request(url, fields, redirect_url,sendcode) {
-    alert("sendcode"+sendcode);
-  $("#btn-sub").click(function () {
-      if ($('#user_code').val()==sendcode.replace(/\s+/g,"")){
-         console.log("into btn-sub");
-        //对表单进行序列化
-        var data = $("#form-data").serialize();
-        $.ajax({
-          type: "post", //请求方式
-          url: url, //请求的接口地址
-          data: data,
-          dataType: "json",
-          success: function (res) {
-          console.log(res);
-           if (res.code == 1) {
-              //成功跳转
-                alert("注册成功，返回首页重新登陆~~");
-              // window.setTimeout("alert('注册成功，3s返回首页重新登陆~~d')", 3000);
-              location.href = redirect_url;
-             } else {
-              //失败信息的展示
-              var error = res.data;
-              for (var index in fields) {
-                var key = fields[index];
-                if (typeof error[key] === 'undefined') {
-                  $("error_" + key).empty();
-                } else {
-                  $("#error_" + key).empty();
-                  $("#error_" + key).apppend(error[key]);
-                }
-              }
-            }
-          },
-        });
-      }else{
-          alert("验证码有误！");
-      }
-  })
+function request(url, fields, redirect_url, sendcode) {
+    alert("sendcode" + sendcode);
+    $("#btn-sub").click(function() {
+        if ($('#user_code').val() == sendcode.replace(/\s+/g, "")) {
+            console.log("into btn-sub");
+            //对表单进行序列化
+            var data = $("#form-data").serialize();
+            $.ajax({
+                type: "post", //请求方式
+                url: url, //请求的接口地址
+                data: data,
+                dataType: "json",
+                success: function(res) {
+                    console.log(res);
+                    if (res.code == 1) {
+                        //成功跳转
+                        alert("注册成功，返回首页重新登陆~~");
+                        // window.setTimeout("alert('注册成功，3s返回首页重新登陆~~d')", 3000);
+                        location.href = redirect_url;
+                    } else {
+                        //失败信息的展示
+                        var error = res.data;
+                        for (var index in fields) {
+                            var key = fields[index];
+                            if (typeof error[key] === 'undefined') {
+                                $("error_" + key).empty();
+                            } else {
+                                $("#error_" + key).empty();
+                                $("#error_" + key).apppend(error[key]);
+                            }
+                        }
+                    }
+                },
+            });
+        } else {
+            alert("验证码有误！");
+        }
+    })
 }
-function  login(url, fields) {
+
+function login(url, fields) {
     console.log("into btn-sub")
-    //对表单进行序列化
+        //对表单进行序列化
     var data = $("#form-data").serialize();
     $.ajax({
-      type: "post", //请求方式
-      url: url, //请求的接口地址
-      data: data,
-      dataType: "json",
-      async: false,
-      success: function (res) {
-        if(res.code == 1) {
-          alert("登录成功");
-          $("#no_login").css("display", "none");
-          $("#user_info").html(res['user']['mail']);
-          $("#haved_login").css("display", "block");
-          $('#img_login').css("display","block");
-        }
-       else {
-          //失败信息的展示
-          var error = res.data;
-          // alert("error"+error)
-          for (var index in fields) {
-            var key = fields[index];
-            if(error[key]!=undefined){
-               alert("错误提示"+error[key]);
+        type: "post", //请求方式
+        url: url, //请求的接口地址
+        data: data,
+        dataType: "json",
+        async: false,
+        success: function(res) {
+            if (res.code == 1) {
+                alert("登录成功");
+                $("#no_login").css("display", "none");
+                $("#user_info").html(res['user']['mail']);
+                $("#haved_login").css("display", "block");
+                $('#img_login').css("display", "block");
+            } else {
+                //失败信息的展示
+                var error = res.data;
+                // alert("error"+error)
+                for (var index in fields) {
+                    var key = fields[index];
+                    if (error[key] != undefined) {
+                        alert("错误提示" + error[key]);
+                    }
+                }
             }
-          }
-        }
-      },
-    });
-//加载file的组建
-
-//文件上传by 刘洋
-function file_upload(url, fields, redirect_url) {
-    $("#text_file").fileinput({
-        theme: 'fas',
-        uploadUrl: '/upload', // you must set a valid URL here else you will get an error
-        allowedFileExtensions: ['zip', 'rar'],
-        overwriteInitial: false,
-        maxFileSize: 1000,
-        maxFilesNum: 10,
-        //allowedFileTypes: ['image', 'video', 'flash'],
-        slugCallback: function(filename) {
-            return filename.replace('(', '_').replace(']', '_');
         },
-        uploadExtraData: function() {
-            console.log("uploadExtraData")
-            return {
-                _xsrf: $("input[name='_xsrf']")[0].value
-            }
-        }
+    });
+    //加载file的组建
 
-    });}
+    //文件上传by 刘洋
+    function file_upload(url, fields, redirect_url) {
+        $("#text_file").fileinput({
+            theme: 'fas',
+            uploadUrl: '/upload', // you must set a valid URL here else you will get an error
+            allowedFileExtensions: ['zip', 'rar'],
+            overwriteInitial: false,
+            maxFileSize: 1000,
+            maxFilesNum: 10,
+            //allowedFileTypes: ['image', 'video', 'flash'],
+            slugCallback: function(filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            },
+            uploadExtraData: function() {
+                console.log("uploadExtraData")
+                return {
+                    _xsrf: $("input[name='_xsrf']")[0].value
+                }
+            }
+
+        });
+    }
     $("#btn-data").click(function() {
         console.log("into file_upload")
             //对表单进行序列化

@@ -31,7 +31,7 @@ class ZoneDataHandler(HtmlHandler):
     def get_response(self):
         # 获取当前用户的uuid
         user_uuid = self.get_secure_cookie("uuid", None)
-
+        print("当前用户的uuid为:", user_uuid)
         # 添加servlet进行出来
         servlet = Servlet_data(None)
         # # 读取数据

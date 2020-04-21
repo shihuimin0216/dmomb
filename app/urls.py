@@ -3,7 +3,7 @@ from app.configs import configs
 import tornado
 from app.admin.view_admin_index import IndexHandler as admin_index
 from app.api.view_index import IndexHandler as api_index
-from app.userInfo.view_account import AccountAddHandler as user_add_account,LoginHandler as login_index,SendMessageHandler as sendcode,PhoneLoginHandler as phonelogin
+from app.userInfo.view_account import AccountAddHandler as user_add_account, LoginHandler as login_index, SendMessageHandler as sendcode, PhoneLoginHandler as phonelogin
 
 from app.data.view_data import DataHandler as data_index, DataUploadHandler as data_upload_index, DataDetail as detail_data_index
 from app.models.view_model import ModelHandler as models_index, AddModelHandler as add_model_index, ModelDetail as detail_model_index
@@ -19,6 +19,7 @@ from app.zone.view_zone_index import IndexHandler as zone_index
 from app.zone.datas.view_zone_datas import ZoneDataHandler as zone_data_index
 from app.zone.machines.view_zone_machine import ZoneMachinesHandler as zone_machine_index
 from app.zone.models.view_zone_models import ZoneModelsHandler as zone_model_index
+from app.zone.xinxi_center.view_zone_xinxi import ZoneXinHandler as zone_xin_index
 
 zone_model_index
 # api接口
@@ -38,6 +39,8 @@ api_urls = [
     (r'/machine/', machine_index),
     (r'/machine/add/', add_machine_index),
     (r'/machine/detail', detail_machine_index),
+
+    (r'/xinxi/', zone_xin_index),
 ]
 
 # 静态文件

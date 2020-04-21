@@ -24,11 +24,12 @@ class JupyterHandler(CommonHandler):
     def post_response(self):
         # post获取传过来的文件
         file_metas = self.request.files.get('jupyter', None)
+        # print(file_metas)
         # 将文件进行保存
         file_saver = FileUpload(file_metas)
         # 文件保存成功
         if file_saver.save_to_html:
-            print(file_saver)
+            # print(file_saver)
             res = {
                 'success': 'success'
             }

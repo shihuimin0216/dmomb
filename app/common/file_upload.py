@@ -34,7 +34,7 @@ class FileUpload(HtmlHandler):
                 filename = file_uuid + '.html'
                 # jupyter转换成html
                 html = jh.to_html(meta['body'])
-                print(html)
+                # print(html)
                 file_path = os.path.join(self.upload_path, filename)
                 print(file_path)
                 self.file_db = os.path.join(self.file_db_path, filename)
