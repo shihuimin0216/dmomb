@@ -362,6 +362,7 @@
                     var value = aCrumbj[1].split(':')[0];
                     var cookiecount = Number(value);
                     var cookiecontent = aCrumbj[1].split(':')[1].substring(0, cookiecount);
+                    alert("cookiecontent"+cookiecontent);
                     // alert(aCrumbj[1].split(':')[1].substring(0,cookiecount));
                     $("#user_info").html(window.atob(cookiecontent));
                     return true;
@@ -388,6 +389,7 @@
             if (GetCookie() == true) {
                 alert("获取当前cookie值有效");
                 showinfo();
+
             } else {
                 $("#no_login").css("display", "block");
                 $('#btn-sub').click(function() {
@@ -411,19 +413,6 @@
                     }
                 });
             };
-            $('#change_user').click(function() {
-                // alert("change_user方法");
-                $.ajax({
-                    data: {
-                        opcookie: 'off'
-                    },
-                    type: "get", //请求方式
-                    url: '/', //请求的接口地址
-                    success: function() {
-                        unshowinfo();
-                    },
-                });
-            });
             $('#reg_btn2').click(function() {
                 $('#reg_1').css("display", "none");
                 $('#reg_2').css("display", "block");
@@ -437,6 +426,21 @@
             $('#img_login').click(function() {
                 $("#id01").css("display", "block");
             });
+            $('#change_user').click(function() {
+                // alert("change_user方法");
+                $.ajax({
+                    data: {
+                        opcookie: 'off'
+                    },
+                    type: "get", //请求方式
+                    url: '/', //请求的接口地址
+                    success: function() {
+                        window.location.reload();
+                        // unshowinfo();
+                    },
+                });
+            });
+
             $(".modal-body label").click(
                 function() {
                     if ($(this).hasClass('focus')) {
