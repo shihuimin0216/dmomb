@@ -8,12 +8,12 @@ class HtmlHandler(CommonHandler):
     # 返回一个用户名称
     @property
     def user_name(self):
-        return self.get_secure_cookie('name', None)
+        return self.get_secure_cookie('current_username', None)
     # 请求的预处理
 
-    # def prepare(self):
-    #     if not self.user_name:
-    #         self.redirect('/')
+    def prepare(self):
+        if not self.user_name:
+            self.redirect('/')
     '''
     渲染模板的
     '''

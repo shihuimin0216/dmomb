@@ -27,8 +27,6 @@ class CustomApplication(tornado.web.Application):
         super(CustomApplication, self).__init__(handlers=handlers, **settings)
 
 
-
-
 # 创建服务
 
 def create_server():

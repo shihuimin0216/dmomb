@@ -43,7 +43,7 @@ def doRecJob(timestamp, imgData):
         res = timestamp_filecount_map.get(str(timestamp))
         res.append(result)
     timestamp_filecount_map[str(timestamp)] = res
-    print timestamp_filecount_map
+    # print timestamp_filecount_map
     procLock.release()
 
 
