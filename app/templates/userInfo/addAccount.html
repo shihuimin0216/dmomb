@@ -257,7 +257,7 @@
                     <!--<span class="status"></span>-->
                     <div class="sub-class">
                         <input id="btn-sub" type='button' value='提交' />
-                        <input id="btn-back" type='button' value='返回'  />
+                        <input id="btn-back" onclick="javascript:history.go(-1)" type='button' value='返回'  />
                     </div>
 
                     <!-- <a href="javascript:void(0)" class="btn btn-primary">登录</a> -->
@@ -303,13 +303,13 @@
                     '/user/add/', ['name', 'number', 'mail', 'password', 'repassword'],
                     '/', sendcode);
             });
-            $('btn-back').click(function () {
-                    if (document.referrer === '') {
-                        location.href = '/';
-                        return;
-                      }
-                      history.go(-1);
-            })
+            // $('btn-back').click(function () {
+            //         if (document.referrer === '') {
+            //             location.href = '/';
+            //             return;
+            //           }
+            //           history.go(-1);
+            // })
         })
         
     </script>
