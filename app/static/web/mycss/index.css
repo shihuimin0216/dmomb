@@ -1,0 +1,73 @@
+@media screen and (max-width: 767px) {
+  .container{
+    width: 100%;
+  }
+  
+  .head2{
+    color: white;
+    padding: 10px 0;
+    background: rgb(21,9,55);
+    margin: 0;
+  }
+  .lxs{
+    background: rgb(21,9,55);
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    height: 125px;
+  }
+  
+}
+  .head2{
+    color: white;
+  }
+ 
+  .content-box{
+    border:1px solid rgb(21,9,55);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    background: rgb(21,9,55);
+    color: #fff;
+    
+  }
+.jumbotron{
+    background: url('../img/bg.jpg') no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.jumbotron section{
+    position: relative;
+    padding-bottom: 50px;
+    z-index: 2
+
+}
+.cover{
+  position: relative;
+}
+.jumbotron .container .cover{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,.6);
+    z-index: 0;
+}
+#lea p{
+  margin: 10px;
+}
+#lea p #learn{
+  position: absolute;
+  left: 30px;
+  bottom: 20px;
+}
+
+.foot {
+    padding: 10px;
+    background: rgb(51,51,51);
+    color: #fff;
+}
